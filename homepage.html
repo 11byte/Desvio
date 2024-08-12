@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li class="title" id="desvio" style="font-family: cursive">Desvio</li>
+        <li class="space" style="width: 1000px"></li>
+        <li id="home">Home</li>
+        <li>Profile</li>
+      </ul>
+    </nav>
+    <center>
+      <h3 class="cat-title">Categories</h3>
+    </center>
+    <div
+      style="
+        display: flex;
+        overflow-x: auto;
+        overflow-x: hidden;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 460px;
+        padding-top: 40px;
+      "
+    >
+      <div style="display: block">
+        <div class="row cat-container-1">
+          <div class="category">
+            <img
+              style="width: 100%; height: 100%; object-fit: cover"
+              src="historic.jpg"
+            />
+          </div>
+          <div class="category">
+            <img
+              style="width: 100%; height: 100%; object-fit: cover"
+              src="nature.jpg"
+            />
+          </div>
+          <div class="category">
+            <img
+              style="width: 100%; height: 100%; object-fit: cover"
+              src="snow.jpg"
+            />
+          </div>
+          <div class="category">
+            <img
+              style="width: 100%; height: 100%; object-fit: cover"
+              src="beach.jpg"
+            />
+          </div>
+        </div>
+      </div>
+      <div style="display: block">
+        <div class="row cat-container-2">
+          <div class="category">
+            <img
+              style="width: 100%; height: 100%; object-fit: cover"
+              src="wildlife.jpg"
+            />
+          </div>
+          <div class="category">
+            <img
+              style="width: 100%; height: 100%; object-fit: cover"
+              src="cultural.jpg"
+            />
+          </div>
+          <div class="category">
+            <img
+              style="width: 100%; height: 100%; object-fit: cover"
+              src="offcity.jpg"
+            />
+          </div>
+          <div class="category">
+            <img
+              style="width: 100%; height: 100%; object-fit: cover"
+              src="adventure-sports.jpg"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="height: 1000px"></section>
+
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <div class="cat-arrow-front">
+      <lord-icon
+        src="https://cdn.lordicon.com/vduvxizq.json"
+        trigger="hover"
+        colors="primary:#d1e3fa"
+        style="width: 80px; height: 80px"
+      >
+      </lord-icon>
+    </div>
+    <div class="cat-arrow-back">
+      <lord-icon
+        src="https://cdn.lordicon.com/vduvxizq.json"
+        trigger="hover"
+        colors="primary:#d1e3fa"
+        style="width: 80px; height: 80px"
+      >
+      </lord-icon>
+    </div>
+
+    <script>
+      const container1 = document.querySelector(".cat-container-1");
+      const container2 = document.querySelector(".cat-container-2");
+      const categoryWidth = document.querySelector(".category").offsetWidth;
+      let currentIndex = 0;
+
+      document
+        .querySelector(".cat-arrow-front")
+        .addEventListener("click", function () {
+          container1.style.transform = `translateX(-1390px)`;
+          container2.style.transform = `translateX(-1390px)`;
+          // const totalCategories =
+          //   document.querySelectorAll(".category").length;
+          // if (currentIndex < totalCategories - 1) {
+          //   currentIndex++;
+          // }
+        });
+
+      document
+        .querySelector(".cat-arrow-back")
+        .addEventListener("click", function () {
+          container1.style.transform = `translateX(0px)`;
+          container2.style.transform = `translateX(0px)`;
+        });
+    </script>
+  </body>
+</html>
