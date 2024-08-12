@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desvio - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000814, #001d3d);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            z-index: 1;  
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+            filter: drop-shadow(2px 4px 6px black);
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: bold;
+            position: relative;
+            background: linear-gradient(45deg, #f7c948, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .logo h1::before {
+            content: 'Desvio';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            color: #f7c948;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateX(-5px);
+        }
+
+        .logo h1:hover {
+            transform: scale(1.05);
+        }
+
+        .logo h1:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .button {
+            background: linear-gradient(45deg, #6a5acd, #00bfff);
+            color: white;
+            border: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            border-radius: 25px;
+            padding: 10px 20px;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #063747, #301cb0);
+        }
+
+        nav ul li a:hover {
+            color: #0022ff;
+        }
+
+        main {
+            margin-top: 80px;
+            text-align: center;
+            padding: 100px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            margin: 50px auto;
+            width: 80%;
+            transition: box-shadow 0.3s;
+            
+        }
+        main:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); 
+            background-color: rgba(255, 255, 255, 0.05) ;
+          }
+
+        main h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #f7b448, #ff4500);
+            
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: background-position 0.3s ease;
+            background-size: 200%;
+            background-position: right;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        main h2:hover {
+            background-position: left;
+        }
+
+        main p {
+            font-size: 18px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: #f7c948;
+            transition: color 0.3s ease;
+        }
+
+        main p:hover {
+            color: #1d32d2e6;
+        }
+
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            main {
+                width: 90%;
+                padding: 60px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo1.png" alt="Desvio Logo">
+            <h1>Desvio</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#login" class="button">Log In</a></li>
+                <li><a href="#register" class="button">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Welcome to Desvio</h2>
+        <p>Plan your wonderful journey with us...</p>
+    </main>
+</body>
+</html>
