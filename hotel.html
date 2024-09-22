@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Booking</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+      form {
+        margin-bottom: 20px;
+      }
+      input {
+        margin: 5px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .hotel-results {
+        margin-top: 20px;
+      }
+      .hotel-card {
+        background-color: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hotel Booking Page</h1>
+
+    <form id="locationForm">
+      <label for="latitude">Latitude:</label>
+      <input type="text" id="latitude" placeholder="Enter latitude" required />
+
+      <label for="longitude">Longitude:</label>
+      <input
+        type="text"
+        id="longitude"
+        placeholder="Enter longitude"
+        required
+      />
+
+      <button type="submit">Search Hotels</button>
+    </form>
+
+    <div id="hotelResults" class="hotel-results"></div>
+
+    <script>
+      document
+        .getElementById("locationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const latitude = document.getElementById("latitude").value;
+          const longitude = document.getElementById("longitude").value;
+
+          // Clear previous results
+          document.getElementById("hotelResults").innerHTML = "";
+
+          // Fetch data from OpenTripMap API using the correct category 'accomodations'
+          fetch(
+            `https://api.opentripmap.com/0.1/en/places/radius?radius=5000&lon=${longitude}&lat=${latitude}&kinds=accomodations&apikey=5ae2e3f221c38a28845f05b60d399e5b1ff416ba7e0db89eed915691`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              if (data.features && data.features.length > 0) {
+                displayHotels(data.features);
+              } else {
+                // Display message if no hotels found
+                document.getElementById("hotelResults").innerHTML =
+                  "<p>No hotels or accommodations found for this location.</p>";
+              }
+            })
+            .catch((error) => {
+              console.error("Error fetching data:", error);
+              document.getElementById("hotelResults").innerHTML =
+                "<p>Failed to fetch accommodation data. Please try again later.</p>";
+            });
+        });
+
+      function displayHotels(hotels) {
+        const hotelResults = document.getElementById("hotelResults");
+
+        hotels.forEach((hotel) => {
+          const hotelCard = document.createElement("div");
+          hotelCard.classList.add("hotel-card");
+
+          hotelCard.innerHTML = `
+      <h3>${hotel.properties.name || "Unnamed Hotel"}</h3>
+      <p>Type: ${hotel.properties.kinds}</p>
+      <p>Location: (${hotel.geometry.coordinates[1]}, ${
+            hotel.geometry.coordinates[0]
+          })</p>
+      <a href="https://www.google.com/maps/search/?api=1&query=${
+        hotel.geometry.coordinates[1]
+      },${hotel.geometry.coordinates[0]}" target="_blank">View on Map</a>
+    `;
+
+          hotelResults.appendChild(hotelCard);
+        });
+      }
+    </script>
+  </body>
+</html>
