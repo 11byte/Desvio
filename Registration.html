@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desvio Registration</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+        /* Popup message styling */
+        .popup-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        .popup-message.show {
+            display: block;
+        }
+
+        /* General styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('Registration page .png') no-repeat center center;
+            background-size: cover;
+        }
+
+        .wrapper {
+            width: 750px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            color: aliceblue;
+            padding: 40px 35px 55px;
+            position: relative;
+        }
+
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .input-box .input-field {
+            position: relative;
+            width: 48%;
+            height: 50px;
+            background: rgb(3, 3, 44);
+            margin: 13px 0;
+        }
+
+        .input-box .input-field input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            outline: none;
+            font-size: 16px;
+            color: white;
+            border-radius: 6px;
+            padding: 15px 15px 15px 40px;
+        }
+
+        .input-box .input-field input::placeholder {
+            color: white;
+        }
+
+        .input-box .input-field i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .wrapper label {
+            display: inline-block;
+            font-size: 14.5px;
+            margin: 10px 0 23px;
+        }
+
+        .wrapper label input {
+            accent-color: white;
+            margin-right: 5px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .form-buttons .btn {
+            width: 48%;
+            height: 50px;
+            background: rgb(50, 50, 138);
+            border: none;
+            outline: none;
+            border-radius: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .form-buttons .register {
+            background: rgb(12, 12, 68);
+        }
+
+        .form-buttons .reset {
+            background: rgb(8, 8, 55);
+        }
+
+        .form-buttons .btn:hover {
+            background: rgb(40, 40, 90);
+        }
+
+        @media (max-width: 576px) {
+            .input-box .input-field {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            .form-buttons .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <form id="registration-form">
+            <h1>Registration</h1>
+            <div class="input-box">
+                <div class="input-field">
+                    <input type="text" id="full-name" placeholder="Full Name" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <i class='bx bx-user'></i>
+                </div>
+                <div class="input-field">
+                    <input type="email" id="email" placeholder="Email" required>
+                    <i class='bx bxl-gmail'></i>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="phone-number" placeholder="Phone Number" required>
+                    <i class='bx bxs-phone'></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class='bx bxs-lock'></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                    <i class='bx bxs-lock'></i>
+                </div>
+            </div>
+            <label><input type="checkbox" id="declaration"> I hereby declare that the above information provided is true and correct</label>
+            <div class="form-buttons">
+                <button type="submit" class="btn register">Register</button>
+                <button type="reset" class="btn reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="popup-message" id="popup-message">Information Saved Successfully!</div>
+
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+
+            // Full name validation
+            const fullName = document.getElementById('full-name').value;
+            const nameRegex = /^[A-Za-z\s]+$/;
+            if (!nameRegex.test(fullName)) {
+                alert('Full Name should contain only letters and spaces.');
+                return;
+            }
+
+            // Username validation
+            const username = document.getElementById('username').value;
+            const usernameRegex = /^[A-Za-z0-9]+$/;
+            if (!usernameRegex.test(username)) {
+                alert('Username should not contain spaces or special characters like @, $, #.');
+                return;
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            if (!email.endsWith('@gmail.com')) {
+                alert('Email should end with @gmail.com');
+                return;
+            }
+
+            // Phone number validation
+            const phoneNumber = document.getElementById('phone-number').value;
+            if (phoneNumber.length !== 10) {
+                alert('Phone number should be exactly 10 digits.');
+                return;
+            }
+
+            // Password validation
+            const password = document.getElementById('password').value;
+            const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#@]).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert('Password must be at least 8 characters long, contain at least one uppercase letter, one number, and a special character (#, @).');
+                return;
+            }
+
+            // Confirm password validation
+            const confirmPassword = document.getElementById('confirm-password').value;
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            // Declaration checkbox validation
+            const declaration = document.getElementById('declaration').checked;
+            if (!declaration) {
+                alert('You must declare that the information provided is correct.');
+                return;
+            }
+
+            // If everything is valid, display a popup message
+            const popup = document.getElementById('popup-message');
+            popup.classList.add('show');
+
+            setTimeout(() => {
+                popup.classList.remove('show');
+                // Clear the form after showing the popup
+                document.getElementById('registration-form').reset();
+            }, 3000);
+        });
+
+        // Reset button functionality to clear form
+        document.querySelector('.reset').addEventListener('click', function () {
+            document.getElementById('registration-form').reset();
+        });
+    </script>
+</body>
+</html>
