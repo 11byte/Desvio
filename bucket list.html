@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucket List</title>
+    <link rel="stylesheet" href="style11.css">
+    <script defer src="script11.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bucket List</h1>
+            <button class="add-button">
+                <i class="plus-icon">+</i>
+            </button>
+        </header>
+
+        <div class="popup hidden">
+            <div class="popup-content">
+                <h2>Add New Bucket List Item</h2>
+                <input type="text" id="location" placeholder="Enter location" required>
+                <textarea id="description" rows="3" placeholder="Enter description" required></textarea>
+                <input type="file" id="imageUpload" accept="image/*" required>
+                <div class="popup-buttons">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="submit-button">Add Item</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="bucketList"></div>
+    </div>
+</body>
+</html>
