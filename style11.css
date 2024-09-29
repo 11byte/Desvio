@@ -1,0 +1,219 @@
+/* Reset styles */
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body styling with background image */
+body {
+    background-image: url('image.jpeg'); /* Replace with your image URL */
+    background-size: cover; /* Make the image cover the entire background */
+    background-position: center; /* Center the background image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Container styling */
+.container {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Header styling */
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #0b1a5e;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-style: oblique;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Add Button styling */
+.add-button {
+    font-size: 1.5rem;
+    width: 55px;
+    height: 55px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+.plus-icon {
+    font-size: 2rem;
+}
+
+/* Popup container styling */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: linear-gradient(145deg, rgb(50, 100, 199) 0%, rgb(44, 51, 189) 50%, rgb(38, 8, 137) 100%);
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: lightningEffect 2s infinite ease-in-out; /* Adding lightning effect */
+}
+
+/* Lightning animation */
+@keyframes lightningEffect {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 154, 154, 0.5), 0 0 30px rgba(255, 154, 154, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 25px rgba(255, 154, 154, 0.7), 0 0 35px rgba(255, 154, 154, 1);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 154, 154, 0.5), 0 0 30px rgba(255, 154, 154, 0.6);
+    }
+}
+
+
+.popup h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #2c649c;
+}
+
+.popup input, .popup textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.popup input:focus, .popup textarea:focus {
+    border-color: #3498db;
+}
+
+#imageUpload {
+    padding: 6px;
+}
+
+/* Popup buttons */
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancel-button, .submit-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #c0392b;
+}
+
+.submit-button {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #27ae60;
+}
+
+/* Bucket list item styling */
+#bucketList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    width: 230px;
+    background-color: rgb(126, 164, 92);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Font styling for bucket list location and description using 'Lobster' font */
+.card .location {
+    font-family: 'Lobster', cursive;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-top: 10px;
+}
+
+.card .description {
+    font-family: 'Lobster', cursive;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-top: 5px;
+}
